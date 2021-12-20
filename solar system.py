@@ -61,6 +61,10 @@ def instrucions():
 
             if event.type == pygame.MOUSEBUTTONDOWN and 100 < mouse[0] < 190 and 530 < mouse[1] < 585:
                 end = True
+                
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
 
         titleFont = pygame.font.SysFont('Calibri', 40, True, False)
         buttonFont = pygame.font.SysFont('Calibri', 25, True, False)
