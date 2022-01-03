@@ -14,34 +14,42 @@ pink = (255, 14, 156)
 turquoise = (97, 231, 199)
 # assign planets
 
-size = (1920, 1080)
+size = (1200, 795)
 
 Sun = Planet(name='Sun', radius=50, colour=sun, speed=200, dfs=0, mass='1.989 × 10^30', angle = 1.5708, size = size)
 # original = 856.26
 
 
 Mercury = Planet(name='Mercury', radius=3, colour=mercury, speed=0.00477, dfs=60, mass='3.285 × 10^23', angle = 1.5708, size = size)
+MerDis = Mercury.get_attr("dfs") + Mercury.get_attr("radius") + Sun.get_attr("radius")
 # Original = 3
 
 Venus = Planet(name='Venus', radius=7, colour=venus, speed=0.00354, dfs=80, mass='4.867 × 10^24', angle = 1.5708, size = size)
+VenDis = Venus.get_attr("dfs") + Venus.get_attr("radius") + Sun.get_attr("radius")
 # Original = 7.44
 
 Earth = Planet(name='Earth', radius=8, colour=earth, speed=0.003, dfs=100, mass='5.9722 × 10^24', angle = 1.5708, size = size)
+EarDis = Earth.get_attr("dfs") + Earth.get_attr("radius") + Sun.get_attr("radius")
 # original = 7.83
 
 Mars = Planet(name='Mars', radius=4, colour=mars, speed=0.002424, dfs=120, mass='6.39 × 10^23', angle = 1.5708, size = size)
+MarDis = Mars.get_attr("dfs") + Mars.get_attr("radius") + Sun.get_attr("radius")
 # Original = 4.17
 
 Jupiter = Planet(name='Jupiter', radius=35, colour=jupiter, speed=0.001317, dfs=183, mass='1.898 × 10^27', angle = 1.5708, size = size)
+JupDis = Jupiter.get_attr("dfs") + Jupiter.get_attr("radius") + Sun.get_attr("radius")
 # Original = 85.97
 
 Saturn = Planet(name='Saturn', radius=30, colour=saturn, speed=0.000975, dfs=255, mass='5.683 × 10^26', angle = 1.5708, size = size)
+SatDis = Saturn.get_attr("dfs") + Saturn.get_attr("radius") + Sun.get_attr("radius")
 # original = 71.61
 
 Uranus = Planet(name='Uranus', radius=25, colour=uranus, speed=0.000684, dfs=315, mass='8.681 × 10^25', angle = 1.5708, size = size)
+UraDis = Uranus.get_attr("dfs") + Uranus.get_attr("radius") + Sun.get_attr("radius")
 # Original = 31.19
 
 Neptune = Planet(name='Neptune', radius=24, colour=neptune, speed=0.000546, dfs=370, mass='1.024 × 10^26', angle = 1.5708, size = size)
+NepDis = Neptune.get_attr("dfs") + Neptune.get_attr("radius") + Sun.get_attr("radius")
 # Create the clock
 clock = pygame.time.Clock()
 
@@ -61,7 +69,7 @@ def instrucions():
 
             if event.type == pygame.MOUSEBUTTONDOWN and 100 < mouse[0] < 190 and 530 < mouse[1] < 585:
                 end = True
-                
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
@@ -95,6 +103,10 @@ def play1():
 
             if event.type == pygame.MOUSEBUTTONDOWN and 100 < mouse[0] < 190 and 530 < mouse[1] < 585:
                 finish = True
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
 
         # selecting the Fonts
         buttonFont = pygame.font.SysFont('Calibri', 25, True, False)
@@ -134,6 +146,10 @@ def start():
 
             if event.type == pygame.MOUSEBUTTONDOWN and 370 < mouse[0] < 500 and 255 < mouse[1] < 300:
                 instrucions()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
 
         # Game logic
 
