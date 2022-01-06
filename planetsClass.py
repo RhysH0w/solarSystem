@@ -35,3 +35,17 @@ class Planet:
         chanY = math.cos(self.angle) * self.dfs
         self.X = chanX + (self.size[0] / 2)
         self.Y = chanY + (self.size[1] / 2)
+
+    @classmethod
+    def speedUp(cls, planets):
+        for x in planets:
+            x.speed *= 1.5
+
+    @classmethod
+    def slowDown(cls, planets):
+        for x in planets:
+            x.speed *= 0.5
+    @classmethod
+    def Start(cls, planets):
+        for x in planets:
+            x.speed = 0
