@@ -13,6 +13,7 @@ white = (255, 255, 255)
 lime = (35, 225, 63)
 pink = (255, 14, 156)
 turquoise = (97, 231, 199)
+mercury = (131, 134, 139)
 # assign planets
 
 size = (1200, 795)
@@ -54,6 +55,7 @@ NepDis = Neptune.get_attr("dfs") + Neptune.get_attr("radius") + Sun.get_attr("ra
 # Create the clock
 clock = pygame.time.Clock()
 
+planets = (Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune)
 
 gameDisplay = pygame.display.set_mode(size)
 pygame.display.set_caption("Solar System")
@@ -94,6 +96,7 @@ def play1():
     # game program loop
     while not finish:
         # event loop
+        mouse = pygame.mouse.get_pos()
         for event in pygame.event.get():
             # question to exit
             if event.type == pygame.QUIT:
@@ -109,8 +112,18 @@ def play1():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
 
+            if event.type == pygame.MOUSEBUTTONDOWN and 40 < mouse[0] < 220 and 70 < mouse[1] < 130:
+                Planet.speedUp(planets)
+
+            if event.type == pygame.MOUSEBUTTONDOWN and 40 < mouse[0] < 220 and 140 < mouse[1] < 200:
+                Planet.slowDown(planets)
+
+            if event.type == pygame.MOUSEBUTTONDOWN and 40 < mouse[0] < 220 and 210 < mouse[1] < 270:
+                Planet.Start(planets)
+
         # selecting the Fonts
         buttonFont = pygame.font.SysFont('Calibri', 25, True, False)
+        optFont = pygame.font.Font('Montserrat.ttf', 45)
         menu = buttonFont.render("Menu", True, white)
 
         gameDisplay.fill(black)
@@ -126,6 +139,41 @@ def play1():
         Saturn.render(gameDisplay, size)
         Uranus.render(gameDisplay, size)
         Neptune.render(gameDisplay, size)
+        pygame.draw.rect(gameDisplay, lime, [40, 70, 180, 60])
+        pygame.draw.rect(gameDisplay, lime, [40, 140, 180, 60])
+        pygame.draw.rect(gameDisplay, lime, [40, 210, 180, 60])
+
+        if 40 < mouse[0] < 220 and 70 < mouse[1] < 130:
+            speedMore = optFont.render("+ Speed", True, mercury)
+            speedLess = optFont.render("- Speed", True, white)
+            Start = optFont.render("Start", True, white)
+            gameDisplay.blit(speedMore, [40, 70])
+            gameDisplay.blit(speedLess, [48, 140])
+            gameDisplay.blit(Start, [75, 210])
+
+        elif 40 < mouse[0] < 220 and 140 < mouse[1] < 200:
+            speedMore = optFont.render("+ Speed", True, white)
+            speedLess = optFont.render("- Speed", True, mercury)
+            Start = optFont.render("Start", True, white)
+            gameDisplay.blit(speedMore, [40, 70])
+            gameDisplay.blit(speedLess, [48, 140])
+            gameDisplay.blit(Start, [75, 210])
+
+        elif 40 < mouse[0] < 220 and 210 < mouse[1] < 270:
+            speedMore = optFont.render("+ Speed", True, white)
+            speedLess = optFont.render("- Speed", True, white)
+            Start = optFont.render("Start", True, mercury)
+            gameDisplay.blit(speedMore, [40, 70])
+            gameDisplay.blit(speedLess, [48, 140])
+            gameDisplay.blit(Start, [75, 210])
+
+        else:
+            speedMore = optFont.render("+ Speed", True, white)
+            speedLess = optFont.render("- Speed", True, white)
+            Start = optFont.render("Start", True, white)
+            gameDisplay.blit(speedMore, [40, 70])
+            gameDisplay.blit(speedLess, [48, 140])
+            gameDisplay.blit(Start, [75, 210])
         pygame.display.flip()
 
 
