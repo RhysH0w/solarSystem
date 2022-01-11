@@ -10,9 +10,10 @@ pink = (255, 14, 156)
 turquoise = (97, 231, 199)
 mercury = (131, 134, 139)
 
-size = (1200, 795)
+size = (1640, 900)
 
-infoFont = pygame.font.Font(os.path.join("static", "Slabo.ttf"), 30)
+infoFont = pygame.font.Font(os.path.join("static", "Slabo.ttf"), 50)
+infoTitle = pygame.font.Font(os.path.join("static", "Slabo.ttf"), 60)
 titleFont = pygame.font.SysFont('Calibri', 40, True, False)
 buttonFont = pygame.font.SysFont('Calibri', 25, True, False)
 optFont = pygame.font.Font(os.path.join("static", "Montserrat.ttf"), 45)
