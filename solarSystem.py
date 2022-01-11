@@ -55,8 +55,14 @@ def factPage(Title, mass, size, fact1,fact2):
 
         gameDisplay.fill(black)
 
-        title = optFont.render(Title, True, white)
-        gameDisplay.blit(title, [144, 144])
+        title = infoTitle.render(Title, True, white)
+        gameDisplay.blit(title, [144, 100])
+
+        Mass = infoFont.render(mass, True, white)
+        gameDisplay.blit(Mass, [144, 244])
+
+        Size = infoFont.render(size, True, white)
+        gameDisplay.blit(Size, [144, 344])
 
         pygame.display.flip()
 
