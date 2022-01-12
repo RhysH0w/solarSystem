@@ -33,8 +33,8 @@ class Planet:
         self.angle += self.speed
         chanX = math.sin(self.angle) * self.dfs
         chanY = math.cos(self.angle) * self.dfs
-        self.X = chanX + (self.size[0] / 2)
-        self.Y = chanY + (self.size[1] / 2)
+        self.X = chanX + (self.screen[0] / 2)
+        self.Y = chanY + (self.screen[1] / 2)
 
     def get_centrex(self):
         return self.X
