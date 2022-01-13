@@ -8,32 +8,6 @@ from static import *
 pygame.init()
 pygame.font.init()
 
-# assign planets
-
-
-
-Sun = Planet(name='Sun', radius=50, colour=sun, speed=200, start = 0 , dfs=0, mass='1,989,000,000,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size =  "696,340 km", screen = size, gravPull = "274", gravVel = "0")
-# original = 856.26
-
-
-Mercury = Planet(name='Mercury', radius=3, colour=mercury, speed=0.00477, start = 0 , dfs=60, mass='328,500,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "2,439.7 km", screen = size, gravPull = "3.7", gravVel = "47.9")
-
-Venus = Planet(name='Venus', radius=7, colour=venus, speed=0.00354, dfs=80, start = 0 , mass='4,867,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "6,051.8 km", screen = size, gravPull = "8.87", gravVel = "35.0")
-
-Earth = Planet(name='Earth', radius=8, colour=earth, speed=0.003, dfs=100, start = 0 , mass='5,972,200,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "6,371 km", screen = size, gravPull = "9.807", gravVel = "29.8")
-
-Mars = Planet(name='Mars', radius=4, colour=mars, speed=0.002424, dfs=120, start = 0 , mass='639,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "3,389.5 km", screen = size, gravPull = "3.721", gravVel = "24.1")
-
-Jupiter = Planet(name='Jupiter', radius=35, colour=jupiter, speed=0.001317, start = 0 , dfs=183, mass='1,898,000,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "69,911 km", screen = size, gravPull = "24.79", gravVel = "13.1")
-
-Saturn = Planet(name='Saturn', radius=30, colour=saturn, speed=0.000975, start = 0 , dfs=255, mass='568,300,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "58,232 km", screen = size, gravPull = "10.44", gravVel = "9.7")
-
-Uranus = Planet(name='Uranus', radius=25, colour=uranus, speed=0.000684, start = 0 , dfs=315, mass='86,810,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "25,362 km", screen = size, gravPull = "8.87", gravVel = "6.8")
-
-Neptune = Planet(name='Neptune', radius=24, colour=neptune, speed=0.000546, start = 0 , dfs=370, mass='102,400,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size = "24,622 km", screen = size, gravPull = "11.15", gravVel = "5.4")
-
-
-planets = (Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune)
 
 gameDisplay = pygame.display.set_mode(size)
 pygame.display.set_caption("Solar System")
@@ -55,7 +29,7 @@ def factPage(Title, mass, size, gravPull,gravVel):
 
         mouse = pygame.mouse.get_pos()
 
-        gameDisplay.fill(black)
+        gameDisplay.blit(background, [0,0])
         # Setting the variable texts
         title = infoTitle.render(Title, True, white)
         Mass = infoFont.render("The mass of the planet is: " + mass, True, white)
@@ -63,7 +37,7 @@ def factPage(Title, mass, size, gravPull,gravVel):
         GravPull = infoFont.render("The gravitational pull is: " + gravPull + " m/s²", True, white)
         GravVel = infoFont.render("The gravitational velocity is: " + gravVel + " km/s", True, white)
         if 140 < mouse[0] < 300 and 644 < mouse[1] < 714:
-            Back = buttonFont2.render("Back", True, mercury)
+            Back = buttonFont2.render("Back", True, mercuryCol)
         else:
             Back = buttonFont2.render("Back", True, white)
 
@@ -96,7 +70,7 @@ def instrucions():
         menu = buttonFont.render("Menu", True, white)
         instruct = titleFont.render("Instructions", True, white)
 
-        gameDisplay.fill(turquoise)
+        gameDisplay.blit(background, [0,0])
         pygame.draw.rect(gameDisplay, black, [100, 530, 90, 55])
         gameDisplay.blit(menu, [114, 547])
         gameDisplay.blit(instruct, [290, 40])
@@ -157,19 +131,19 @@ def play1():
         # selecting the Fonts
         menu = buttonFont.render("Menu", True, white)
 
-        gameDisplay.fill(black)
+        gameDisplay.blit(background, [0,0])
         # pygame.draw.circle(Sun) ~ ~ ~
         pygame.draw.rect(gameDisplay, lime, [100, 530, 90, 55])
         gameDisplay.blit(menu, [114, 547])
-        Sun.render(gameDisplay, size)
-        Mercury.render(gameDisplay, size)
-        Venus.render(gameDisplay, size)
-        Earth.render(gameDisplay, size)
-        Mars.render(gameDisplay, size)
-        Jupiter.render(gameDisplay, size)
-        Saturn.render(gameDisplay, size)
-        Uranus.render(gameDisplay, size)
-        Neptune.render(gameDisplay, size)
+        Sun.render(gameDisplay, size, sunImg)
+        Mercury.render(gameDisplay, size, MercuryImg)
+        Venus.render(gameDisplay, size, VenusImg)
+        Earth.render(gameDisplay, size, EarthImg)
+        Mars.render(gameDisplay, size, MarsImg)
+        Jupiter.render(gameDisplay, size, JupiterImg)
+        Saturn.render(gameDisplay, size, SaturnImg)
+        Uranus.render(gameDisplay, size, UranusImg)
+        Neptune.render(gameDisplay, size, NeptuneImg)
         pygame.draw.rect(gameDisplay, lime, [40, 70, 180, 60])
         pygame.draw.rect(gameDisplay, lime, [40, 140, 180, 60])
         pygame.draw.rect(gameDisplay, lime, [40, 210, 180, 60])
@@ -180,7 +154,7 @@ def play1():
             direct = "Stop"
 
         if 40 < mouse[0] < 220 and 70 < mouse[1] < 130:
-            speedMore = optFont.render("+ Speed", True, mercury)
+            speedMore = optFont.render("+ Speed", True, mercuryCol)
             speedLess = optFont.render("- Speed", True, white)
             Start = optFont.render(direct, True, white)
             gameDisplay.blit(speedMore, [40, 70])
@@ -189,7 +163,7 @@ def play1():
 
         elif 40 < mouse[0] < 220 and 140 < mouse[1] < 200:
             speedMore = optFont.render("+ Speed", True, white)
-            speedLess = optFont.render("- Speed", True, mercury)
+            speedLess = optFont.render("- Speed", True, mercuryCol)
             Start = optFont.render(direct, True, white)
             gameDisplay.blit(speedMore, [40, 70])
             gameDisplay.blit(speedLess, [48, 140])
@@ -198,7 +172,7 @@ def play1():
         elif 40 < mouse[0] < 220 and 210 < mouse[1] < 270:
             speedMore = optFont.render("+ Speed", True, white)
             speedLess = optFont.render("- Speed", True, white)
-            Start = optFont.render(direct, True, mercury)
+            Start = optFont.render(direct, True, mercuryCol)
             gameDisplay.blit(speedMore, [40, 70])
             gameDisplay.blit(speedLess, [48, 140])
             gameDisplay.blit(Start, [75, 210])
@@ -217,7 +191,7 @@ def play1():
             radius1 = planet.get_attr("radius")
             name1 = planet.get_attr("name")
             if ax - radius1 < mouse[0] < ax + radius1 and ay - radius1 < mouse[1] < ay + radius1:
-                planetName = optFont.render(name1, True, mercury)
+                planetName = optFont.render(name1, True, mercuryCol)
                 gameDisplay.blit(planetName, [ax, ay + radius1 + 10])
 
         pygame.display.flip()
@@ -252,22 +226,25 @@ def start():
         title = titleFont.render("Welcome To The Solar System", True, pink)
 
         if 190 < mouse[0] < 340 and 530 < mouse[1] < 610:
-            play = buttonFont2.render("Play", True, mercury)
+            play = buttonFont2.render("Play", True, mercuryCol)
             instruct = buttonFont2.render("Instructions", True, white)
         elif 690 < mouse[0] < 1060 and 530 < mouse[1] < 600:
             play = buttonFont2.render("Play", True, white)
-            instruct = buttonFont2.render("Instructions", True, mercury)
+            instruct = buttonFont2.render("Instructions", True, mercuryCol)
         else:
             play = buttonFont2.render("Play", True, white)
             instruct = buttonFont2.render("Instructions", True, white)
 
         # Drawing code here
-        gameDisplay.fill(black)
+        gameDisplay.blit(background, [0,0])
         pygame.draw.rect(gameDisplay, lime, [190, 530, 150, 80])
         pygame.draw.rect(gameDisplay, lime, [690, 530, 370, 70])
         gameDisplay.blit(title, [350, 100])
         gameDisplay.blit(play, [200, 530])
         gameDisplay.blit(instruct, [700, 530])
+        a = size[0] - 30
+        b = size[0] - a
+        pygame.draw.rect(gameDisplay, lime, [a, 0, b, 30])
         pygame.display.flip()
 
     pygame.QUIT
