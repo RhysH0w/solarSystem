@@ -46,16 +46,29 @@ class Planet:
     def speedUp(cls, planets):
         for x in planets:
             x.speed *= 1.5
+            x.start *= 1.5
 
     @classmethod
     def slowDown(cls, planets):
         for x in planets:
             x.speed *= 0.5
+            x.start *= 0.5
 
     @classmethod
     def Stop(cls, planets):
         for x in planets:
+            x.start = x.speed
             x.speed = 0
+
+    @classmethod
+    def Start(cls, planets):
+        for x in planets:
+            x.speed = x.start
+
+    @classmethod
+    def speed(cls, planets):
+        for x in planets:
+            return x.speed
 
     '''@classmethod
     def Name(cls, ):'''
