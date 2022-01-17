@@ -3,15 +3,11 @@ import pygame
 import random
 from planetsClass import *
 from static import *
+from hashlib import sha256
 
 # Initialise the engines
 pygame.init()
 pygame.font.init()
-
-
-gameDisplay = pygame.display.set_mode(size)
-pygame.display.set_caption("Solar System")
-
 
 def factPage(Title, mass, size, gravPull,gravVel):
     end = False
@@ -24,7 +20,7 @@ def factPage(Title, mass, size, gravPull,gravVel):
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
 
-            if event.type == pygame.MOUSEBUTTONDOWN and 140 < mouse[0] < 300 and 644 < mouse[1] < 714:
+            if event.type == pygame.MOUSEBUTTONDOWN and 46 < mouse[0] < 206 and 644 < mouse[1] < 714:
                 end = True
 
         mouse = pygame.mouse.get_pos()
@@ -32,22 +28,22 @@ def factPage(Title, mass, size, gravPull,gravVel):
         gameDisplay.blit(background, [0,0])
         # Setting the variable texts
         title = infoTitle.render(Title, True, white)
-        Mass = infoFont.render("The mass of the planet is: " + mass, True, white)
+        Mass = infoFont.render("The mass of the planet is: " + mass + "kg", True, white)
         Size = infoFont.render("The radius of the planet is: " + size, True, white)
         GravPull = infoFont.render("The gravitational pull is: " + gravPull + " m/s²", True, white)
         GravVel = infoFont.render("The gravitational velocity is: " + gravVel + " km/s", True, white)
-        if 140 < mouse[0] < 300 and 644 < mouse[1] < 714:
+        if 46 < mouse[0] < 206 and 644 < mouse[1] < 714:
             Back = buttonFont2.render("Back", True, mercuryCol)
         else:
             Back = buttonFont2.render("Back", True, white)
 
         # Inserting the text on the screen
-        gameDisplay.blit(title, [144, 100])
-        gameDisplay.blit(Mass, [144, 244])
-        gameDisplay.blit(Size, [144, 344])
-        gameDisplay.blit(GravPull, [144, 444])
-        gameDisplay.blit(GravVel, [144, 544])
-        gameDisplay.blit(Back, [144, 644])
+        gameDisplay.blit(title, [50, 100])
+        gameDisplay.blit(Mass, [50, 244])
+        gameDisplay.blit(Size, [50, 344])
+        gameDisplay.blit(GravPull, [50, 444])
+        gameDisplay.blit(GravVel, [50, 544])
+        gameDisplay.blit(Back, [50, 644])
 
         pygame.display.flip()
 
@@ -216,6 +212,9 @@ def start():
             if event.type == pygame.MOUSEBUTTONDOWN and 690 < mouse[0] < 1060 and 530 < mouse[1] < 600:
                 instrucions()
 
+            if event.type == pygame.MOUSEBUTTONDOWN and a < mouse[0] < size[0] and 0 < mouse[1] and 30:
+                pygame.quit()
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
@@ -249,5 +248,11 @@ def start():
 
     pygame.QUIT
 
-
-start()
+password = input("Please enter the password - ")
+hold = sha256(password.encode('utf-8')).hexdigest()
+if hold != hashedPass:
+    print("hi")
+else:
+    gameDisplay = pygame.display.set_mode(size)
+    pygame.display.set_caption("Solar System")
+    start()
