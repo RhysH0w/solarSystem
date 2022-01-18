@@ -9,7 +9,7 @@ from hashlib import sha256
 pygame.init()
 pygame.font.init()
 
-def factPage(Title, mass, size, gravPull,gravVel):
+def factPage(Title, mass, size, gravPull,gravVel, planetName):
     end = False
     while not end:
         for event in pygame.event.get():
@@ -22,6 +22,9 @@ def factPage(Title, mass, size, gravPull,gravVel):
 
             if event.type == pygame.MOUSEBUTTONDOWN and 46 < mouse[0] < 206 and 644 < mouse[1] < 714:
                 end = True
+
+            if event.type == pygame.MOUSEBUTTONDOWN and 270 < mouse[0] < 435 and 100 < mouse[1] < 170:
+                Planet.sizeUp(planetName)
 
         mouse = pygame.mouse.get_pos()
 
@@ -37,6 +40,7 @@ def factPage(Title, mass, size, gravPull,gravVel):
         else:
             Back = buttonFont2.render("Back", True, white)
 
+        sizeUp = buttonFont2.render("size +", True, white)
         # Inserting the text on the screen
         gameDisplay.blit(title, [50, 100])
         gameDisplay.blit(Mass, [50, 244])
@@ -44,7 +48,8 @@ def factPage(Title, mass, size, gravPull,gravVel):
         gameDisplay.blit(GravPull, [50, 444])
         gameDisplay.blit(GravVel, [50, 544])
         gameDisplay.blit(Back, [50, 644])
-
+        pygame.draw.rect(gameDisplay, lime, [270,100,165,70])
+        gameDisplay.blit(sizeUp, [275, 100])
         pygame.display.flip()
 
 def instrucions():
@@ -75,10 +80,28 @@ def instrucions():
 
 # Creates the function for the instructions
 def play1():
+    sunImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
+    MercuryImg = pygame.image.load(os.path.join('static', 'mercury.PNG'))
+    VenusImg = pygame.image.load(os.path.join('static', 'venus.PNG'))
+    EarthImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
+    MarsImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
+    JupiterImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
+    SaturnImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
+    UranusImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
+    NeptuneImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
     # defining 'finish'
     finish = False
     # game program loop
     while not finish:
+        sunImg = pygame.transform.scale(sunImg, [Sun.get_attr("radius") * 2, Sun.get_attr("radius") * 2])
+        MercuryImg = pygame.transform.scale(MercuryImg, [Mercury.get_attr("radius") * 2, Mercury.get_attr("radius") * 2])
+        VenusImg = pygame.transform.scale(VenusImg, [Venus.get_attr("radius") * 2, Venus.get_attr("radius") * 2])
+        EarthImg = pygame.transform.scale(EarthImg, [Earth.get_attr("radius") * 2, Earth.get_attr("radius") * 2])
+        MarsImg = pygame.transform.scale(MarsImg, [Mars.get_attr("radius") * 2, Mars.get_attr("radius") * 2])
+        JupiterImg = pygame.transform.scale(JupiterImg, [Jupiter.get_attr("radius") * 2, Jupiter.get_attr("radius") * 2])
+        SaturnImg = pygame.transform.scale(SaturnImg, [Saturn.get_attr("radius") * 2, Saturn.get_attr("radius") * 2])
+        UranusImg = pygame.transform.scale(UranusImg, [Uranus.get_attr("radius") * 2, Uranus.get_attr("radius") * 2])
+        NeptuneImg = pygame.transform.scale(NeptuneImg, [Neptune.get_attr("radius") * 2, Neptune.get_attr("radius") * 2])
         # event loop
         mouse = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -121,7 +144,8 @@ def play1():
                     gravPull = planet.get_attr("gravPull")
                     gravVel = planet.get_attr("gravVel")
 
-                    factPage(title, mass, scale, gravPull, gravVel)
+
+                    factPage(title, mass, scale, gravPull, gravVel, planet)
 
 
         # selecting the Fonts
