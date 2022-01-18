@@ -62,6 +62,16 @@ class Planet:
         for x in planets:
             return x.speed
 
+    def sizeUp(self):
+        self.radius += 5
+        return self.radius
+
+    def sizeDown(self, radius):
+        radius -= 5
+        if radius < 5:
+            radius = 5
+        return radius
+
 
 Sun = Planet(name='Sun', radius=50, colour=sunCol, speed=200, start = 0 , dfs=0, mass='1,989,000,000,000,000,000,000,000,000,000', angle = random.uniform(0,6.2832), size =  "696,340 km", screen = size, gravPull = "274", gravVel = "0")
 # original = 856.26
@@ -85,29 +95,3 @@ Neptune = Planet(name='Neptune', radius=24,  colour = neptuneCol, speed=0.000546
 
 planets = (Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune)
 
-sunImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
-sunImg = pygame.transform.scale(sunImg, [Sun.get_attr("radius")*2, Sun.get_attr("radius")*2])
-
-MercuryImg = pygame.image.load(os.path.join('static', 'mercury.PNG'))
-MercuryImg = pygame.transform.scale(MercuryImg, [Mercury.get_attr("radius")*2, Mercury.get_attr("radius")*2])
-
-VenusImg = pygame.image.load(os.path.join('static', 'venus.PNG'))
-VenusImg = pygame.transform.scale(VenusImg, [Venus.get_attr("radius")*2, Venus.get_attr("radius")*2])
-
-EarthImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
-EarthImg = pygame.transform.scale(EarthImg, [Earth.get_attr("radius")*2, Earth.get_attr("radius")*2])
-
-MarsImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
-MarsImg = pygame.transform.scale(MarsImg, [Mars.get_attr("radius")*2, Mars.get_attr("radius")*2])
-
-JupiterImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
-JupiterImg = pygame.transform.scale(JupiterImg, [Jupiter.get_attr("radius")*2, Jupiter.get_attr("radius")*2])
-
-SaturnImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
-SaturnImg = pygame.transform.scale(SaturnImg, [Saturn.get_attr("radius")*2, Saturn.get_attr("radius")*2])
-
-UranusImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
-UranusImg = pygame.transform.scale(UranusImg, [Uranus.get_attr("radius")*2, Uranus.get_attr("radius")*2])
-
-NeptuneImg = pygame.image.load(os.path.join('static', 'sun.PNG'))
-NeptuneImg = pygame.transform.scale(NeptuneImg, [Neptune.get_attr("radius")*2, Neptune.get_attr("radius")*2])
